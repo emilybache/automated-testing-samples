@@ -1,6 +1,7 @@
 package com.innoq.automatedtesting.samples.shoppingcart;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.strings.Printable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,6 +42,26 @@ public class ShoppingCartTest_Step4_Approvals {
 
         // then
         Approvals.verify(new ShoppingCartPrinter(shoppingCart).print());
+    }
+
+    @Test
+    public void two_items() throws Exception {
+        var story = new PrintableStory("should calculate subtotal and total amount if two items with different prices and quantities are added");
+
+        Article article1 = givenAnArticle().withPrice(9.95).availableInStock().andGetIt();
+        Article article2 = givenAnArticle().withPrice(7.5).availableInStock().andGetIt();
+        givenShippingAmount(3.5);
+        story.given(
+                new Printable<>(currentUser, UserPrinter::print),
+                new Printable<>(shoppingCart, ShoppingCartPrinter::print)
+        );
+
+        shoppingCart.add(article1, 1);
+        story.when("add article1");
+        shoppingCart.add(article2, 3);
+        story.when("add article2");
+
+        Approvals.verify(story.then());
     }
 
     @BeforeEach

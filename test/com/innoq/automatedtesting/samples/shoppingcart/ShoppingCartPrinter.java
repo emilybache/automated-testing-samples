@@ -11,6 +11,10 @@ public class ShoppingCartPrinter {
     }
 
     public String print() {
+        return print(this.cart);
+    }
+
+    public static String print(ShoppingCart cart) {
         String articles = cart.items()
                 .stream()
                 .map(item -> STR."        Article (quantity: \{item.quantity()}, price: \{item.amount()})")

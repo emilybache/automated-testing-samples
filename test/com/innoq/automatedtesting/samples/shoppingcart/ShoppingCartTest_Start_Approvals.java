@@ -54,7 +54,7 @@ public class ShoppingCartTest_Start_Approvals {
         public void startOfTest(ShoppingCart shoppingCart, CurrentUser currentUser) {
             cartPrinter = new ShoppingCartPrinter(shoppingCart);
             userPrinter = new UserPrinter(currentUser);
-            toVerify.append(userPrinter.printUser());
+            toVerify.append(userPrinter.print());
             toVerify.append(cartPrinter.print());
         }
 
@@ -62,7 +62,7 @@ public class ShoppingCartTest_Start_Approvals {
             toVerify.append("---------\n");
             toVerify.append(action + "\n");
             toVerify.append("---------\n");
-            toVerify.append(userPrinter.printUser());
+            toVerify.append(userPrinter.print());
             toVerify.append(cartPrinter.print());
         }
 
