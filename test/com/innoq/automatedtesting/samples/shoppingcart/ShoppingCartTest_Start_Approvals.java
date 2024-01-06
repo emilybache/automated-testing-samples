@@ -14,7 +14,6 @@ public class ShoppingCartTest_Start_Approvals {
 
     @Test
     void addArticles() throws Exception {
-        ShoppingCartTestStory.initStory();
         var story = new ShoppingCartTestStory();
 
         var stock = mock(Stock.class);
@@ -31,7 +30,7 @@ public class ShoppingCartTest_Start_Approvals {
         story.startOfTest(shoppingCart, currentUser);
 
         shoppingCart.add(article1, 1);
-        story.userAction("Add article");
+        story.act("Add article");
 
         var article2 = mock(Article.class);
         when(stock.availableUnits(article2)).thenReturn(3);
@@ -39,8 +38,7 @@ public class ShoppingCartTest_Start_Approvals {
         when(shippingCalculator.calculateShipping(BigDecimal.valueOf(32.45))).thenReturn(BigDecimal.valueOf(3.5));
 
         shoppingCart.add(article2, 3);
-        story.userAction("Add article");
-
+        story.act("Add article");
 
         Approvals.verify(story.fullStory());
     }
@@ -52,12 +50,7 @@ public class ShoppingCartTest_Start_Approvals {
         private UserPrinter userPrinter;
 
         public ShoppingCartTestStory() {
-            initStory();
-        }
-
-        private static StringBuilder initStory() {
             toVerify = new StringBuilder();
-            return toVerify;
         }
 
         public void startOfTest(ShoppingCart shoppingCart, CurrentUser currentUser) {
@@ -67,7 +60,7 @@ public class ShoppingCartTest_Start_Approvals {
             toVerify.append(cartPrinter.print());
         }
 
-        public void userAction(String action) {
+        public void act(String action) {
             toVerify.append("---------\n");
             toVerify.append(action + "\n");
             toVerify.append("---------\n");
