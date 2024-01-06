@@ -44,7 +44,7 @@ public class ShoppingCartTest_Step3_MakeItASpecification {
     }
 
     @BeforeEach
-    private void setupCurrentUser() {
+    void setupCurrentUser() {
         when(currentUser.customerStatus()).thenReturn(CustomerStatus.REGULAR);
     }
 

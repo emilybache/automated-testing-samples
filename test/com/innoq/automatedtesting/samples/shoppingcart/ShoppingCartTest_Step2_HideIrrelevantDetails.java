@@ -60,7 +60,7 @@ public class ShoppingCartTest_Step2_HideIrrelevantDetails {
     }
 
     @BeforeEach
-    private void setupCurrentUser() {
+    void setupCurrentUser() {
         when(currentUser.customerStatus()).thenReturn(CustomerStatus.REGULAR);
     }
 
