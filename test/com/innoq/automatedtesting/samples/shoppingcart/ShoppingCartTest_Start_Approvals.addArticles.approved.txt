@@ -1,0 +1,31 @@
+Current user status: GOLD
+ShoppingCart:
+    Articles:
+
+    Subtotal:	0
+    Shipping:	0
+    Total:	0
+
+---------
+Add article
+---------
+Current user status: GOLD
+ShoppingCart:
+    Articles:
+        Article (quantity: 1, price: 9.95)
+    Subtotal:	9.95
+    Shipping:	3.5
+    Total:	13.45
+
+---------
+Add article
+---------
+Current user status: GOLD
+ShoppingCart:
+    Articles:
+        Article (quantity: 1, price: 9.95)
+        Article (quantity: 3, price: 22.5)
+    Subtotal:	32.45
+    Shipping:	3.5
+    Total:	35.95
+
