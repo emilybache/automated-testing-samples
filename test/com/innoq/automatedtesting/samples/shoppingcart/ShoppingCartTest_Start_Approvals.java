@@ -4,11 +4,9 @@ import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ShoppingCartTest_Start_Approvals {
 
@@ -74,40 +72,4 @@ public class ShoppingCartTest_Start_Approvals {
         }
     }
 
-    public static class UserPrinter {
-
-        private static CurrentUser currentUser;
-
-        public UserPrinter(CurrentUser user) {
-            currentUser = user;
-        }
-
-        private static String printUser() {
-            return "Current user status: " + currentUser.customerStatus() + "\n";
-        }
-    }
-
-    public static class ShoppingCartPrinter {
-
-        private final ShoppingCart cart;
-
-        public ShoppingCartPrinter(ShoppingCart cart) {
-            this.cart = cart;
-        }
-
-        public String print() {
-            var result = new StringBuilder();
-            result.append("ShoppingCart:\n");
-            result.append("    Articles:\n");
-            result.append(cart.items().stream().map(item ->
-                    "        Article (quantity: " + item.quantity() + ", price: " + item.amount() + ")"
-            ).collect(Collectors.joining("\n")));
-
-            result.append("\n    Subtotal:\t" + cart.subtotalAmount());
-            result.append("\n    Shipping:\t" + cart.shippingAmount());
-            result.append("\n    Total:\t" + cart.totalAmount());
-            result.append("\n\n");
-            return result.toString();
-        }
-    }
 }

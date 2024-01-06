@@ -1,0 +1,8 @@
+ShoppingCart:
+    Articles:
+        Article (quantity: 1, price: 9.95)
+        Article (quantity: 3, price: 22.5)
+    Subtotal:	32.45
+    Shipping:	3.5
+    Total:	35.95
+
