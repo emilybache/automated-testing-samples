@@ -8,10 +8,10 @@ import java.util.concurrent.Callable;
 
 public class PrintableScenario {
 
-    private StringBuilder toVerify = new StringBuilder();
+    private final StringBuilder toVerify = new StringBuilder();
     private final String name;
     private final String description;
-    private ArrayList<Printable> printables = new ArrayList<>();
+    private final ArrayList<Printable> printables = new ArrayList<>();
 
     public PrintableScenario(String name, String description) {
         this.name = name;
