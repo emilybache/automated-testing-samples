@@ -31,11 +31,19 @@ public class ShoppingCart {
 
     public void add(Article article, int quantity) throws InsufficientUnitsInStockException {
         var availableUnits = stock.availableUnits(article);
+        // Bug - reset availableUnits
+        // availableUnits = 0;
         if (quantity > availableUnits)
             throw new InsufficientUnitsInStockException();
         var customerStatus = currentUser.customerStatus();
         var price = priceCalculator.calculatePrice(article, customerStatus);
+        // Bug - use wrong customer status
+        // price = priceCalculator.calculatePrice(article, CustomerStatus.PLATINUM);
+        // Bug - use wrong price
+        // price = BigDecimal.ONE;
         this.items.add(new Item(article, quantity, price));
+        // Bug - add item twice
+        //this.items.add(new Item(article, quantity, price));
         calculateTotals();
     }
 
@@ -63,6 +71,8 @@ public class ShoppingCart {
     private void calculateTotals() {
         this.subtotalAmount = items.stream().map(Item::amount).reduce(BigDecimal.ZERO, BigDecimal::add);
         this.shippingAmount = shippingCalculator.calculateShipping(subtotalAmount);
+        // Bug - reset shipping amount
+        //this.shippingAmount = BigDecimal.ZERO;
         this.totalAmount = this.subtotalAmount.add(this.shippingAmount);
     }
 
@@ -100,7 +110,10 @@ public class ShoppingCart {
         }
 
         public String articleDescription() {
-            return article.brand() + " - " + article.name() + " - " + article.color() + " - " + article.size();
+            String description = STR."\{article.brand()} - \{article.name()} - \{article.color()} - \{article.size()}";
+            // Bug - item description truncated
+            // description = description.substring(0, 5);
+            return description;
         }
 
         public int quantity() {
