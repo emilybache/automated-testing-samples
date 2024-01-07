@@ -1,6 +1,7 @@
 package com.innoq.automatedtesting.samples.shoppingcart;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.strings.Printable;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ public class ShoppingCartTest_Start_Approvals {
 
     @Test
     void addArticles() throws Exception {
-        var story = new ShoppingCartTestStory();
+        var scenario = new PrintableScenario("Add Articles");
 
         var stock = mock(Stock.class);
         var article1 = mock(Article.class);
@@ -25,10 +26,13 @@ public class ShoppingCartTest_Start_Approvals {
         when(shippingCalculator.calculateShipping(BigDecimal.valueOf(9.95))).thenReturn(BigDecimal.valueOf(3.5));
         var shoppingCart = new ShoppingCart(stock, currentUser, priceCalculator, shippingCalculator);
 
-        story.startOfTest(shoppingCart, currentUser);
+        scenario.startOfTest(
+               new Printable<>(shoppingCart, ShoppingCartPrinter::print),
+               new Printable<>(currentUser, UserPrinter::print)
+        );
 
         shoppingCart.add(article1, 1);
-        story.act("Add article");
+        scenario.act("Add article");
 
         var article2 = mock(Article.class);
         when(stock.availableUnits(article2)).thenReturn(3);
@@ -36,40 +40,9 @@ public class ShoppingCartTest_Start_Approvals {
         when(shippingCalculator.calculateShipping(BigDecimal.valueOf(32.45))).thenReturn(BigDecimal.valueOf(3.5));
 
         shoppingCart.add(article2, 3);
-        story.act("Add article");
+        scenario.act("Add article");
 
-        Approvals.verify(story.fullStory());
-    }
-
-    public static class ShoppingCartTestStory {
-
-        private static StringBuilder toVerify;
-        private static ShoppingCartPrinter cartPrinter;
-        private UserPrinter userPrinter;
-
-        public ShoppingCartTestStory() {
-            toVerify = new StringBuilder();
-        }
-
-        public void startOfTest(ShoppingCart shoppingCart, CurrentUser currentUser) {
-            cartPrinter = new ShoppingCartPrinter(shoppingCart);
-            userPrinter = new UserPrinter(currentUser);
-            toVerify.append(userPrinter.print());
-            toVerify.append(cartPrinter.print());
-        }
-
-        public void act(String action) {
-            toVerify.append("---------\n");
-            toVerify.append(action + "\n");
-            toVerify.append("---------\n");
-            toVerify.append(userPrinter.print());
-            toVerify.append(cartPrinter.print());
-        }
-
-        public String fullStory()
-        {
-            return toVerify.toString();
-        }
+        Approvals.verify(scenario.print());
     }
 
 }

@@ -4,16 +4,6 @@ import java.util.stream.Collectors;
 
 public class ShoppingCartPrinter {
 
-    private final ShoppingCart cart;
-
-    public ShoppingCartPrinter(ShoppingCart cart) {
-        this.cart = cart;
-    }
-
-    public String print() {
-        return print(this.cart);
-    }
-
     public static String print(ShoppingCart cart) {
         String articles = cart.items()
                 .stream()

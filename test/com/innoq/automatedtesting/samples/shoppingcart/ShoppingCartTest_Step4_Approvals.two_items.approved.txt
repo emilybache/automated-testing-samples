@@ -1,3 +1,7 @@
+two items
+=========
+should calculate subtotal and total amount if two items with different prices and quantities are added
+
 Current user status: REGULAR
 
 ShoppingCart:
@@ -8,7 +12,6 @@ ShoppingCart:
     Total:	0
 
 
-------------
 add article1
 ------------
 Current user status: REGULAR
@@ -21,7 +24,6 @@ ShoppingCart:
     Total:	13.45
 
 
-------------
 add article2
 ------------
 Current user status: REGULAR

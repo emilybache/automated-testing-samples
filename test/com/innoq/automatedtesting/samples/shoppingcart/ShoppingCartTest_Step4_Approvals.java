@@ -41,12 +41,12 @@ public class ShoppingCartTest_Step4_Approvals {
         shoppingCart.add(article2, 3);
 
         // then
-        Approvals.verify(new ShoppingCartPrinter(shoppingCart).print());
+        Approvals.verify(ShoppingCartPrinter.print(shoppingCart));
     }
 
     @Test
     public void two_items() throws Exception {
-        var story = new PrintableStory("should calculate subtotal and total amount if two items with different prices and quantities are added");
+        var story = new PrintableScenario("two items", "should calculate subtotal and total amount if two items with different prices and quantities are added");
 
         Article article1 = givenAnArticle().withPrice(9.95).availableInStock().andGetIt();
         Article article2 = givenAnArticle().withPrice(7.5).availableInStock().andGetIt();
@@ -56,10 +56,15 @@ public class ShoppingCartTest_Step4_Approvals {
                 new Printable<>(shoppingCart, ShoppingCartPrinter::print)
         );
 
-        shoppingCart.add(article1, 1);
-        story.when("add article1");
-        shoppingCart.add(article2, 3);
-        story.when("add article2");
+        story.when("add article1", () -> {
+            shoppingCart.add(article1, 1);
+            return null;
+        });
+
+        story.when("add article2", () -> {
+            shoppingCart.add(article2, 3);
+            return null;
+        });
 
         Approvals.verify(story.then());
     }
