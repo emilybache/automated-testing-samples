@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
+import static com.innoq.automatedtesting.samples.shoppingcart.ShoppingCartAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -25,28 +26,23 @@ public class ShoppingCartTest_Step3a_Approvals {
     @InjectMocks ShoppingCart shoppingCart;
 
     @Test
-    public void two_items() throws Exception {
-        var story = new PrintableScenario("two items", "should calculate subtotal and total amount if two items with different prices and quantities are added");
-
+    public void should_calculate_subtotal_and_total_amount_if_two_items_with_different_prices_and_quantities_are_added() throws Exception {
+        // given
         Article article1 = givenAnArticle().withPrice(9.95).availableInStock().andGetIt();
         Article article2 = givenAnArticle().withPrice(7.5).availableInStock().andGetIt();
         givenShippingAmount(3.5);
-        story.given(
-                new Printable<>(currentUser, UserPrinter::print),
-                new Printable<>(shoppingCart, ShoppingCartPrinter::print)
-        );
 
-        story.when("add article1", () -> {
-            shoppingCart.add(article1, 1);
-            return null;
-        });
+        // when
+        shoppingCart.add(article1, 1);
+        shoppingCart.add(article2, 3);
 
-        story.when("add article2", () -> {
-            shoppingCart.add(article2, 3);
-            return null;
-        });
-
-        Approvals.verify(story.then());
+        // then
+        assertThat(shoppingCart).containsNumberOfItems(2);
+        assertThat(shoppingCart).containsItemFor(article1).withQuantity(1).withAmount(9.95);
+        assertThat(shoppingCart).containsItemFor(article2).withQuantity(3).withAmount(22.50);
+        assertThat(shoppingCart).hasSubtotalAmount(32.45);
+        assertThat(shoppingCart).hasShippingAmount(3.5);
+        assertThat(shoppingCart).hasTotalAmount(35.95);
     }
 
     @BeforeEach
