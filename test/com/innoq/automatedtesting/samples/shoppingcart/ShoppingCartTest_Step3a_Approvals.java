@@ -3,6 +3,7 @@ package com.innoq.automatedtesting.samples.shoppingcart;
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printable;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,6 +16,7 @@ import static com.innoq.automatedtesting.samples.shoppingcart.ShoppingCartAssert
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@Disabled("to reduce distractions during demo")
 @ExtendWith(MockitoExtension.class)
 public class ShoppingCartTest_Step3a_Approvals {
 

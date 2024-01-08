@@ -2,6 +2,7 @@ package com.innoq.automatedtesting.samples.shoppingcart;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printable;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@Disabled("to reduce distractions during demo")
 public class ShoppingCartTest_Step1a_Approvals {
 
     @Test

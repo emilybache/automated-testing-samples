@@ -46,18 +46,8 @@ public class ShoppingCartTest_Step2a_Approvals {
         shoppingCart.add(article1, 1);
         shoppingCart.add(article2, 3);
 
-        // assert
-        assertEquals(2, shoppingCart.items().size());
-
-        assertEquals(1, shoppingCart.items().get(0).quantity());
-        assertEquals(BigDecimal.valueOf(9.95), shoppingCart.items().get(0).amount());
-
-        assertEquals(3, shoppingCart.items().get(1).quantity());
-        assertEquals(BigDecimal.valueOf(22.50), shoppingCart.items().get(1).amount());
-
-        assertEquals(BigDecimal.valueOf(32.45), shoppingCart.subtotalAmount());
-        assertEquals(BigDecimal.valueOf(3.5), shoppingCart.shippingAmount());
-        assertEquals(BigDecimal.valueOf(35.95), shoppingCart.totalAmount());
+        // print
+        Approvals.verify(ShoppingCartPrinter.print(shoppingCart));
     }
 
     @BeforeEach

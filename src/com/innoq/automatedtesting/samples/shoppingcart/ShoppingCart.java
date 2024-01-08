@@ -32,7 +32,7 @@ public class ShoppingCart {
     public void add(Article article, int quantity) throws InsufficientUnitsInStockException {
         var availableUnits = stock.availableUnits(article);
         // Bug - reset availableUnits
-        // availableUnits = 0;
+        //availableUnits = 0;
         if (quantity > availableUnits)
             throw new InsufficientUnitsInStockException();
         var customerStatus = currentUser.customerStatus();
