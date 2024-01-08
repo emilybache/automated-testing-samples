@@ -15,34 +15,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ShoppingCartTest_Step4_Approvals {
+public class ShoppingCartTest_Step3a_Approvals {
 
-    @Mock
-    Stock stock;
-    @Mock
-    CurrentUser currentUser;
-    @Mock
-    PriceCalculator priceCalculator;
-    @Mock
-    ShippingCalculator shippingCalculator;
+    @Mock Stock stock;
+    @Mock CurrentUser currentUser;
+    @Mock PriceCalculator priceCalculator;
+    @Mock ShippingCalculator shippingCalculator;
 
-    @InjectMocks
-    ShoppingCart shoppingCart;
-
-    @Test
-    public void should_calculate_subtotal_and_total_amount_if_two_items_with_different_prices_and_quantities_are_added() throws Exception {
-        // given
-        Article article1 = givenAnArticle().withPrice(9.95).availableInStock().andGetIt();
-        Article article2 = givenAnArticle().withPrice(7.5).availableInStock().andGetIt();
-        givenShippingAmount(3.5);
-
-        // when
-        shoppingCart.add(article1, 1);
-        shoppingCart.add(article2, 3);
-
-        // then
-        Approvals.verify(ShoppingCartPrinter.print(shoppingCart));
-    }
+    @InjectMocks ShoppingCart shoppingCart;
 
     @Test
     public void two_items() throws Exception {

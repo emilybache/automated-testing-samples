@@ -6,13 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-public class ShoppingCartTest_Start_Approvals {
+public class ShoppingCartTest_Step1a_Approvals {
 
     @Test
-    void addArticles() throws Exception {
+    void add() throws Exception {
         var scenario = new PrintableScenario("Add Articles");
 
         var stock = mock(Stock.class);
