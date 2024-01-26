@@ -1,6 +1,6 @@
 // This file is not included in the Apache license Copyright (C) 2020 innoQ Deutschland GmbH that applies to the rest of the project.
 // The copyright for this file is owned by ApprovalTests.Java under their Apache license.
-package com.innoq.automatedtesting.samples.shoppingcart;
+package org.approvaltests.strings;
 
 import org.approvaltests.strings.Printable;
 
@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 
 /**
  * This code is generic and not supposed to be part of this project
- * - it should be part of org.approvaltests.strings
+ * - it is part of org.approvaltests.strings
  */
 public class PrintableScenario {
 

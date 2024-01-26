@@ -2,6 +2,7 @@ package com.innoq.automatedtesting.samples.shoppingcart;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printable;
+import org.approvaltests.strings.PrintableScenario;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
