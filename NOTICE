@@ -1,2 +1,4 @@
 automated-testing-samples
 Copyright (C) 2020 innoQ Deutschland GmbH
+With the exception of files added to this repository by Emily Bache.
+Those files are Copyright (C) 2024 Emily Bache with the exception of "PrintableScenario.java" which belongs to the ApprovalTests.Java project and is covered by its license.
