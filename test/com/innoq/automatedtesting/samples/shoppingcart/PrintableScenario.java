@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
+/**
+ * This code is generic and not supposed to be part of this project
+ * - it should be part of org.approvaltests.strings
+ */
 public class PrintableScenario {
 
     private final StringBuilder toVerify = new StringBuilder();
