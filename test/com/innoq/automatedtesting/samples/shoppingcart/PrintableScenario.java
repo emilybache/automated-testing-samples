@@ -1,3 +1,5 @@
+// This file is not included in the Apache license Copyright (C) 2020 innoQ Deutschland GmbH that applies to the rest of the project.
+// The copyright for this file is owned by ApprovalTests.Java under their Apache license.
 package com.innoq.automatedtesting.samples.shoppingcart;
 
 import org.approvaltests.strings.Printable;
