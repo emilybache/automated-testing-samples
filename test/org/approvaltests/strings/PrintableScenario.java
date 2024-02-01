@@ -3,10 +3,10 @@
 package org.approvaltests.strings;
 
 import org.approvaltests.strings.Printable;
+import org.lambda.actions.Action0WithException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.Callable;
 
 /**
  * This code is generic and not supposed to be part of this project
@@ -82,8 +82,19 @@ public class PrintableScenario {
         return toVerify.toString();
     }
 
-    public void when(String action, Callable function) throws Exception {
-        function.call();
-        when(action);
+    public void when(String action, Action0WithException function) {
+        try {
+            function.call();
+            when(action);
+        } catch (Throwable e) {
+            toVerify.append(makeSubheading(action));
+            toVerify.append(STR."This action threw an exception: \{e.getMessage()}");
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return print();
     }
 }

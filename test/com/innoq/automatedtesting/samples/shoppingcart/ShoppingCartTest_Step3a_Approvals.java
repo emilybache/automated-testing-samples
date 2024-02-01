@@ -37,15 +37,8 @@ public class ShoppingCartTest_Step3a_Approvals {
                 new Printable<>(shoppingCart, ShoppingCartPrinter::print)
         );
 
-        story.when("add article1", () -> {
-            shoppingCart.add(article1, 1);
-            return null;
-        });
-
-        story.when("add article2", () -> {
-            shoppingCart.add(article2, 3);
-            return null;
-        });
+        story.when("add article1", () -> shoppingCart.add(article1, 1));
+        story.when("add article2", () -> shoppingCart.add(article2, 3));
 
         Approvals.verify(story.then());
     }
